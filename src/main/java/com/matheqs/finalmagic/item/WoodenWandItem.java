@@ -9,8 +9,11 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.component.CustomData;
 import net.minecraft.world.level.Level;
-import java.util.UUID;
+import com.matheqs.finalmagic.binding.WandBindingSavedData;
+import net.minecraft.server.level.ServerLevel;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.UUID;
 
 public class WoodenWandItem extends Item {
 
@@ -34,36 +37,69 @@ public class WoodenWandItem extends Item {
             return InteractionResultHolder.sidedSuccess(stack, true);
         }
 
-        CustomData customData = stack.getOrDefault(
-                DataComponents.CUSTOM_DATA, CustomData.EMPTY);
+        ServerLevel serverLevel = (ServerLevel) level;
 
-        CompoundTag data = customData.copyTag();
+        WandBindingSavedData bindings =
+                WandBindingSavedData.get(serverLevel.getServer());
 
-        if (!data.hasUUID(OWNER_UUID)) {
-            CustomData.update(DataComponents.CUSTOM_DATA, stack, tag -> {
-                if (!tag.hasUUID(WAND_UUID)) {
-                    tag.putUUID(WAND_UUID, UUID.randomUUID());
-                }
+        CompoundTag data = stack.getOrDefault(
+                DataComponents.CUSTOM_DATA, CustomData.EMPTY).copyTag();
 
-                tag.putUUID(OWNER_UUID, player.getUUID());
-                tag.putString(OWNER_NAME, player.getGameProfile().getName());
-            });
+        // Verifica se o proprietário registrado ainda tem este vínculo ativo.
+        if (data.hasUUID(OWNER_UUID)) {
+            UUID ownerId = data.getUUID(OWNER_UUID);
 
-            player.sendSystemMessage(
-                    Component.translatable("message.finalmagic.wand_bound"));
+            boolean active = data.hasUUID(WAND_UUID)
+                    && bindings.isActiveWand(
+                    ownerId, data.getUUID(WAND_UUID));
+
+            if (!active) {
+                CustomData.update(DataComponents.CUSTOM_DATA, stack, tag -> {
+                    tag.remove(OWNER_UUID);
+                    tag.remove(OWNER_NAME);
+                });
+
+                data = stack.getOrDefault(
+                        DataComponents.CUSTOM_DATA, CustomData.EMPTY).copyTag();
+            }
+        }
+
+        // Um vínculo ativo de outro jogador impede o uso.
+        if (data.hasUUID(OWNER_UUID)) {
+            if (!data.getUUID(OWNER_UUID).equals(player.getUUID())) {
+                player.sendSystemMessage(Component.translatable(
+                        "message.finalmagic.wand_other_owner"));
+
+                return InteractionResultHolder.fail(stack);
+            }
+
+            player.sendSystemMessage(Component.translatable(
+                    "message.finalmagic.wand_already_bound"));
 
             return InteractionResultHolder.sidedSuccess(stack, false);
         }
 
-        if (!data.getUUID(OWNER_UUID).equals(player.getUUID())) {
-            player.sendSystemMessage(
-                    Component.translatable("message.finalmagic.wand_other_owner"));
+        UUID wandId = data.hasUUID(WAND_UUID)
+                ? data.getUUID(WAND_UUID)
+                : UUID.randomUUID();
+
+        if (!bindings.canBind(player.getUUID(), wandId)) {
+            player.sendSystemMessage(Component.translatable(
+                    "message.finalmagic.binding_locked"));
 
             return InteractionResultHolder.fail(stack);
         }
 
-        player.sendSystemMessage(
-                Component.translatable("message.finalmagic.wand_already_bound"));
+        bindings.bind(player.getUUID(), wandId);
+
+        CustomData.update(DataComponents.CUSTOM_DATA, stack, tag -> {
+            tag.putUUID(WAND_UUID, wandId);
+            tag.putUUID(OWNER_UUID, player.getUUID());
+            tag.putString(OWNER_NAME, player.getGameProfile().getName());
+        });
+
+        player.sendSystemMessage(Component.translatable(
+                "message.finalmagic.wand_bound"));
 
         return InteractionResultHolder.sidedSuccess(stack, false);
     }

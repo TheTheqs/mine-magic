@@ -2,5 +2,6 @@
   "item.finalmagic.wooden_wand": "Varinha de Madeira",
   "message.finalmagic.wand_bound": "A varinha foi vinculada a você.",
   "message.finalmagic.wand_other_owner": "Esta varinha pertence a outro jogador.",
-  "message.finalmagic.wand_already_bound": "Esta varinha já está vinculada a você."
+  "message.finalmagic.wand_already_bound": "Esta varinha já está vinculada a você.",
+  "message.finalmagic.binding_locked": "Você precisa dormir ou morrer antes de vincular outra varinha."
 }
