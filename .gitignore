@@ -1,0 +1,40 @@
+# Gradle: cache e arquivos de build
+/.gradle/
+/build/
+
+# Minecraft / Forge: ambientes locais de execução
+/run/
+/run-data/
+/src/generated/resources/.cache/
+
+# IntelliJ IDEA
+/.idea/
+/out/
+*.iml
+*.ipr
+*.iws
+
+# Eclipse
+/bin/
+/eclipse/
+/.settings/
+/.metadata/
+.classpath
+.project
+*.launch
+
+# Logs e arquivos temporários
+*.log
+hs_err_pid*
+replay_pid*
+*.tmp
+*.bak
+*~
+
+# Arquivos do sistema operacional
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Changelogs distribuídos pelo Forge MDK
+forge*changelog.txt
