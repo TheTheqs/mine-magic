@@ -6,6 +6,7 @@ import net.minecraft.world.item.Item;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
+import net.minecraft.world.item.BlockItem;
 
 public class ModItems {
 
@@ -15,4 +16,10 @@ public class ModItems {
     public static final RegistryObject<Item> WOODEN_WAND =
             ITEMS.register("wooden_wand",
                     () -> new WoodenWandItem(new Item.Properties().stacksTo(1)));
+
+    public static final RegistryObject<Item> INSCRIPTION_TABLE =
+            ITEMS.register("inscription_table",
+                    () -> new BlockItem(
+                            ModBlocks.INSCRIPTION_TABLE.get(),
+                            new Item.Properties()));
 }
