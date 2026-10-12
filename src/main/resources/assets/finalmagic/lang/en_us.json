@@ -1,3 +1,6 @@
 {
-  "item.finalmagic.wooden_wand": "Wooden Wand"
+  "item.finalmagic.wooden_wand": "Wooden Wand",
+  "message.finalmagic.wand_bound": "The wand is now bound to you.",
+  "message.finalmagic.wand_other_owner": "This wand belongs to another player.",
+  "message.finalmagic.wand_already_bound": "This wand is already bound to you."
 }
