@@ -1,0 +1,25 @@
+package com.matheqs.finalmagic.client;
+
+import com.matheqs.finalmagic.FinalMagic;
+import com.matheqs.finalmagic.client.screen.InscriptionTableScreen;
+import com.matheqs.finalmagic.registry.ModMenus;
+import net.minecraft.client.gui.screens.MenuScreens;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
+
+@Mod.EventBusSubscriber(
+        modid = FinalMagic.MODID,
+        bus = Mod.EventBusSubscriber.Bus.MOD,
+        value = Dist.CLIENT)
+public class ClientModEvents {
+
+    @SubscribeEvent
+    public static void onClientSetup(FMLClientSetupEvent event) {
+        event.enqueueWork(() ->
+                MenuScreens.register(
+                        ModMenus.INSCRIPTION_TABLE.get(),
+                        InscriptionTableScreen::new));
+    }
+}

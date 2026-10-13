@@ -1,6 +1,7 @@
 package com.matheqs.finalmagic.registry;
 
 import com.matheqs.finalmagic.FinalMagic;
+import com.matheqs.finalmagic.block.InscriptionTableBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -17,7 +18,7 @@ public class ModBlocks {
 
     public static final RegistryObject<Block> INSCRIPTION_TABLE =
             BLOCKS.register("inscription_table",
-                    () -> new Block(BlockBehaviour.Properties.of()
+                    () -> new InscriptionTableBlock(BlockBehaviour.Properties.of()
                             .mapColor(MapColor.WOOD)
                             .strength(2.5F)
                             .sound(SoundType.WOOD)));
