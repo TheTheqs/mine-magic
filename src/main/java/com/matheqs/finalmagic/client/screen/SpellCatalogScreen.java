@@ -3,6 +3,12 @@ package com.matheqs.finalmagic.client.screen;
 import com.matheqs.finalmagic.client.ModKeyMappings;
 import com.matheqs.finalmagic.registry.ModItems;
 import com.matheqs.finalmagic.spell.SpellCatalog;
+import com.matheqs.finalmagic.spell.WandSpellData;
+import com.matheqs.finalmagic.item.WoodenWandItem;
+import com.matheqs.finalmagic.network.ModNetwork;
+import com.matheqs.finalmagic.network.SelectSpellPacket;
+import net.minecraft.world.InteractionHand;
+import java.util.UUID;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.screens.Screen;
@@ -26,11 +32,19 @@ public class SpellCatalogScreen extends Screen {
             new EnumMap<>(SpellCatalog.School.class);
     private SpellCatalog.School school = SpellCatalog.School.CONJURATION;
     private int firstRow;
+    private InteractionHand selectionHand;
+    private UUID selectionWandId;
     private int left;
     private int top;
 
     public SpellCatalogScreen() {
         super(Component.translatable("gui.finalmagic.spells.title"));
+        net.minecraft.client.Minecraft client = net.minecraft.client.Minecraft.getInstance();
+        if (client.player != null) {
+            selectionHand = client.player.getMainHandItem().getItem() instanceof WoodenWandItem
+                    ? InteractionHand.MAIN_HAND : InteractionHand.OFF_HAND;
+            selectionWandId = WandSpellData.getWandId(client.player.getItemInHand(selectionHand));
+        }
     }
 
     @Override
@@ -91,6 +105,11 @@ public class SpellCatalogScreen extends Screen {
             int y = top + 76 + (visible / COLUMNS) * 68;
             boolean over = mouseX >= x && mouseX < x + CARD_WIDTH
                     && mouseY >= y && mouseY < y + CARD_HEIGHT;
+            ItemStack heldWand = minecraft != null && minecraft.player != null && selectionHand != null
+                    ? minecraft.player.getItemInHand(selectionHand) : ItemStack.EMPTY;
+            if (entry.id().equals(WandSpellData.getCurrentSpell(heldWand))) {
+                graphics.fill(x - 1, y - 1, x + CARD_WIDTH + 1, y + CARD_HEIGHT + 1, 0xFFFFD085);
+            }
             graphics.fill(x, y, x + CARD_WIDTH, y + CARD_HEIGHT,
                     over ? 0xFF725139 : 0xFF4B382B);
             if (minecraft != null
@@ -127,6 +146,33 @@ public class SpellCatalogScreen extends Screen {
         }
     }
 
+    @Override
+    public boolean mouseClicked(double mouseX, double mouseY, int button) {
+        if (button == 0) {
+            List<SpellCatalog.Entry> available = entries();
+            for (int visible = 0; visible < COLUMNS * visibleRows; visible++) {
+                int index = firstRow * COLUMNS + visible;
+                if (index >= available.size()) break;
+                int x = left + 12 + (visible % COLUMNS) * 64;
+                int y = top + 76 + (visible / COLUMNS) * 68;
+                if (mouseX >= x && mouseX < x + CARD_WIDTH
+                        && mouseY >= y && mouseY < y + CARD_HEIGHT) {
+                    if (selectionWandId == null || selectionHand == null) {
+                        if (minecraft != null && minecraft.player != null) {
+                            minecraft.player.displayClientMessage(Component.translatable(
+                                    "message.finalmagic.selection.invalid_wand"), false);
+                        }
+                        return true;
+                    }
+                    ModNetwork.selectSpell(new SelectSpellPacket(
+                            selectionHand, selectionWandId, available.get(index).id()));
+                    onClose();
+                    return true;
+                }
+            }
+        }
+        return super.mouseClicked(mouseX, mouseY, button);
+    }
     @Override
     public boolean mouseScrolled(double mouseX, double mouseY,
                                  double horizontal, double vertical) {

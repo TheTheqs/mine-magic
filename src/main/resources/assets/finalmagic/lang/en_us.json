@@ -11,7 +11,6 @@
   "item.finalmagic.fire_scroll": "Fire Scroll",
   "message.finalmagic.fire_scroll_missing": "Fire (I) is unavailable: carry a Fire Scroll in your inventory.",
   "message.finalmagic.fire_available": "Fire (I) is available: you carry a Fire Scroll.",
-  "gui.finalmagic.spells.available": "Available through the scroll in your inventory.",
   "gui.finalmagic.spells.title": "Available spells",
   "school.finalmagic.manipulation": "Manipulation",
   "gui.finalmagic.spells.empty": "No spells available in this school.",
@@ -23,5 +22,11 @@
   "school.finalmagic.conjuration": "Conjuration",
   "gui.finalmagic.spells.count": "%s available spell(s)",
   "key.finalmagic.spell_catalog": "Open spell catalog",
-  "school.finalmagic.transmutation": "Transfiguration"
+  "school.finalmagic.transmutation": "Transfiguration",
+  "message.finalmagic.selection.selected": "Selected spell: %s.",
+  "message.finalmagic.selection.invalid_wand": "Hold your active, bound wand to select a spell.",
+  "message.finalmagic.selection.unavailable": "That spell is not currently available.",
+  "gui.finalmagic.spells.available": "Click to select this spell.",
+  "message.finalmagic.cast.no_spell": "Select Fire in the catalog before casting.",
+  "entity.finalmagic.visual_fireball": "Fireball (visual)"
 }

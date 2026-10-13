@@ -11,7 +11,6 @@
   "item.finalmagic.fire_scroll": "Pergaminho de Fogo",
   "message.finalmagic.fire_scroll_missing": "Fogo (I) está indisponível: carregue um Pergaminho de Fogo no inventário.",
   "message.finalmagic.fire_available": "Fogo (I) está disponível: você carrega um Pergaminho de Fogo.",
-  "gui.finalmagic.spells.available": "Disponível pelo pergaminho no inventário.",
   "gui.finalmagic.spells.title": "Feitiços disponíveis",
   "school.finalmagic.manipulation": "Manipulação",
   "gui.finalmagic.spells.empty": "Nenhum feitiço disponível nesta escola.",
@@ -23,5 +22,11 @@
   "school.finalmagic.conjuration": "Conjuração",
   "gui.finalmagic.spells.count": "%s feitiço(s) disponível(is)",
   "key.finalmagic.spell_catalog": "Abrir catálogo de feitiços",
-  "school.finalmagic.transmutation": "Transfiguração"
+  "school.finalmagic.transmutation": "Transfiguração",
+  "message.finalmagic.selection.selected": "Feitiço selecionado: %s.",
+  "message.finalmagic.selection.invalid_wand": "Segure sua varinha ativa e vinculada para selecionar um feitiço.",
+  "message.finalmagic.selection.unavailable": "Esse feitiço não está disponível no momento.",
+  "gui.finalmagic.spells.available": "Clique para selecionar este feitiço.",
+  "message.finalmagic.cast.no_spell": "Selecione Fogo no catálogo antes de conjurar.",
+  "entity.finalmagic.visual_fireball": "Bola de Fogo (visual)"
 }
