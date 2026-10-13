@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " t ",
+    "ppp",
+    "s s"
+  ],
+  "key": {
+    "t": {
+      "tag": "minecraft:wooden_trapdoors"
+    },
+    "p": {
+      "tag": "minecraft:planks"
+    },
+    "s": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "id": "finalmagic:inscription_table",
+    "count": 1
+  }
+}

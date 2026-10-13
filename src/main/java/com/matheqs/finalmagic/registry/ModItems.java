@@ -22,4 +22,8 @@ public class ModItems {
                     () -> new BlockItem(
                             ModBlocks.INSCRIPTION_TABLE.get(),
                             new Item.Properties()));
+
+    public static final RegistryObject<Item> CIPHER_COAL =
+            ITEMS.register("cipher_coal",
+                    () -> new Item(new Item.Properties().durability(20)));
 }

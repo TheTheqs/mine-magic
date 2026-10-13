@@ -4,5 +4,6 @@
   "message.finalmagic.wand_other_owner": "This wand belongs to another player.",
   "message.finalmagic.wand_already_bound": "This wand is already bound to you.",
   "message.finalmagic.binding_locked": "Você precisa dormir ou morrer antes de vincular outra varinha.",
-  "block.finalmagic.inscription_table": "Sorcery Table"
+  "block.finalmagic.inscription_table": "Sorcery Table",
+  "item.finalmagic.cipher_coal": "Carvão de Cifra"
 }
