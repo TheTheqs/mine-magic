@@ -5,5 +5,10 @@
   "message.finalmagic.wand_already_bound": "This wand is already bound to you.",
   "message.finalmagic.binding_locked": "Você precisa dormir ou morrer antes de vincular outra varinha.",
   "block.finalmagic.inscription_table": "Sorcery Table",
-  "item.finalmagic.cipher_coal": "Carvão de Cifra"
+  "item.finalmagic.cipher_coal": "Carvão de Cifra",
+  "subtitles.finalmagic.inscription_table.draw": "Cipher drawn",
+  "gui.finalmagic.inscription.invalid": "Invalid pattern — remove paper to clear the drawing.",
+  "message.finalmagic.inscription.inventory_full": "Your inventory has no room for the result.",
+  "item.finalmagic.fire_scroll": "Fire Scroll",
+  "gui.finalmagic.inscription.valid": "Valid pattern — click to create."
 }

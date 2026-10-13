@@ -3,6 +3,8 @@ package com.matheqs.finalmagic.client;
 import com.matheqs.finalmagic.FinalMagic;
 import com.matheqs.finalmagic.client.screen.InscriptionTableScreen;
 import com.matheqs.finalmagic.registry.ModMenus;
+import com.matheqs.finalmagic.registry.ModItems;
+import net.minecraftforge.client.event.RegisterColorHandlersEvent;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -21,5 +23,10 @@ public class ClientModEvents {
                 MenuScreens.register(
                         ModMenus.INSCRIPTION_TABLE.get(),
                         InscriptionTableScreen::new));
+    }
+    @SubscribeEvent
+    public static void onRegisterItemColors(RegisterColorHandlersEvent.Item event) {
+        event.register((stack, tintIndex) -> tintIndex == 0 ? 0xFFFFDADA : -1,
+                ModItems.FIRE_SCROLL.get());
     }
 }

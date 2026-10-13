@@ -26,4 +26,6 @@ public class ModItems {
     public static final RegistryObject<Item> CIPHER_COAL =
             ITEMS.register("cipher_coal",
                     () -> new Item(new Item.Properties().durability(20)));
+    public static final RegistryObject<Item> FIRE_SCROLL =
+            ITEMS.register("fire_scroll", () -> new Item(new Item.Properties()));
 }

@@ -1,0 +1,8 @@
+{
+  "block.inscription_table.draw": {
+    "subtitle": "subtitles.finalmagic.inscription_table.draw",
+    "sounds": [
+      "finalmagic:block/inscription_table/draw"
+    ]
+  }
+}

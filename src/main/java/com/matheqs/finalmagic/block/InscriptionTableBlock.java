@@ -15,6 +15,8 @@ import net.minecraft.world.SimpleMenuProvider;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.Containers;
+import net.minecraft.world.SimpleContainer;
 import org.jetbrains.annotations.NotNull;
 
 public class InscriptionTableBlock extends Block implements EntityBlock {
@@ -39,13 +41,17 @@ public class InscriptionTableBlock extends Block implements EntityBlock {
             @NotNull Player player,
             @NotNull BlockHitResult hitResult) {
 
-        if (player instanceof ServerPlayer serverPlayer) {
+        if (player instanceof ServerPlayer serverPlayer
+                && level.getBlockEntity(position)
+                instanceof InscriptionTableBlockEntity table) {
+
             SimpleMenuProvider provider = new SimpleMenuProvider(
                     (containerId, inventory, menuPlayer) ->
                             new InscriptionTableMenu(
                                     containerId,
                                     inventory,
-                                    position),
+                                    position,
+                                    table),
                     Component.translatable(
                             "block.finalmagic.inscription_table"));
 
@@ -53,5 +59,32 @@ public class InscriptionTableBlock extends Block implements EntityBlock {
         }
 
         return InteractionResult.sidedSuccess(level.isClientSide());
+    }
+
+    @Override
+    protected void onRemove(
+            BlockState state,
+            @NotNull Level level,
+            @NotNull BlockPos position,
+            BlockState newState,
+            boolean movedByPiston) {
+
+        if (!state.is(newState.getBlock())
+                && !level.isClientSide()
+                && level.getBlockEntity(position)
+                instanceof InscriptionTableBlockEntity table) {
+
+            SimpleContainer contents = new SimpleContainer(
+                    table.getInventory().getSlots());
+
+            for (int slot = 0; slot < contents.getContainerSize(); slot++) {
+                contents.setItem(
+                        slot, table.getInventory().getStackInSlot(slot).copy());
+            }
+
+            Containers.dropContents(level, position, contents);
+        }
+
+        super.onRemove(state, level, position, newState, movedByPiston);
     }
 }

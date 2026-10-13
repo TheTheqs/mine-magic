@@ -8,6 +8,7 @@ import com.matheqs.finalmagic.registry.ModItems;
 import com.matheqs.finalmagic.registry.ModBlocks;
 import com.matheqs.finalmagic.registry.ModBlockEntities;
 import com.matheqs.finalmagic.registry.ModMenus;
+import com.matheqs.finalmagic.registry.ModSounds;
 
 @Mod(FinalMagic.MODID)
 public class FinalMagic {
@@ -21,6 +22,7 @@ public class FinalMagic {
         ModBlockEntities.BLOCK_ENTITIES.register(context.getModEventBus());
         ModItems.ITEMS.register(context.getModEventBus());
         ModMenus.MENUS.register(context.getModEventBus());
+        ModSounds.SOUNDS.register(context.getModEventBus());
 
         LOGGER.info("FinalMagic inicializado.");
     }
