@@ -11,8 +11,6 @@ import net.minecraft.world.entity.player.Inventory;
 import org.jetbrains.annotations.NotNull;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
-import java.util.List;
-import java.util.Optional;
 
 public class InscriptionTableScreen
         extends AbstractContainerScreen<InscriptionTableMenu> {
@@ -176,12 +174,7 @@ private void requestCraft() {
         if (menu.getCarried().isEmpty() && hoveredSlot != null
                 && hoveredSlot.index == 0 && hoveredSlot.hasItem()) {
             ItemStack preview = menu.getPaperPreview();
-            Component status = Component.translatable(menu.hasFirePreview()
-                    ? "gui.finalmagic.inscription.valid"
-                    : "gui.finalmagic.inscription.invalid");
-            graphics.renderTooltip(font,
-                    List.of(preview.getHoverName(), status),
-                    Optional.empty(), mouseX, mouseY);
+            graphics.renderTooltip(font, preview.getHoverName(), mouseX, mouseY);
         } else {
             super.renderTooltip(graphics, mouseX, mouseY);
         }

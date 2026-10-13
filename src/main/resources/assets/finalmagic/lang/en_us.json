@@ -7,8 +7,21 @@
   "block.finalmagic.inscription_table": "Sorcery Table",
   "item.finalmagic.cipher_coal": "Carvão de Cifra",
   "subtitles.finalmagic.inscription_table.draw": "Cipher drawn",
-  "gui.finalmagic.inscription.invalid": "Invalid pattern — remove paper to clear the drawing.",
   "message.finalmagic.inscription.inventory_full": "Your inventory has no room for the result.",
   "item.finalmagic.fire_scroll": "Fire Scroll",
-  "gui.finalmagic.inscription.valid": "Valid pattern — click to create."
+  "message.finalmagic.fire_scroll_missing": "Fire (I) is unavailable: carry a Fire Scroll in your inventory.",
+  "message.finalmagic.fire_available": "Fire (I) is available: you carry a Fire Scroll.",
+  "gui.finalmagic.spells.available": "Available through the scroll in your inventory.",
+  "gui.finalmagic.spells.title": "Available spells",
+  "school.finalmagic.manipulation": "Manipulation",
+  "gui.finalmagic.spells.empty": "No spells available in this school.",
+  "key.categories.finalmagic": "Final Magic",
+  "gui.finalmagic.spells.close": "Esc to close",
+  "gui.finalmagic.spells.tier": "Tier %s",
+  "school.finalmagic.summoning": "Summoning",
+  "spell.finalmagic.fire": "Fire",
+  "school.finalmagic.conjuration": "Conjuration",
+  "gui.finalmagic.spells.count": "%s available spell(s)",
+  "key.finalmagic.spell_catalog": "Open spell catalog",
+  "school.finalmagic.transmutation": "Transfiguration"
 }

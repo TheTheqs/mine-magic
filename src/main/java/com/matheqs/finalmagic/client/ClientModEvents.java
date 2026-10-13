@@ -5,6 +5,7 @@ import com.matheqs.finalmagic.client.screen.InscriptionTableScreen;
 import com.matheqs.finalmagic.registry.ModMenus;
 import com.matheqs.finalmagic.registry.ModItems;
 import net.minecraftforge.client.event.RegisterColorHandlersEvent;
+import net.minecraftforge.client.event.RegisterKeyMappingsEvent;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -28,5 +29,9 @@ public class ClientModEvents {
     public static void onRegisterItemColors(RegisterColorHandlersEvent.Item event) {
         event.register((stack, tintIndex) -> tintIndex == 0 ? 0xFFFFDADA : -1,
                 ModItems.FIRE_SCROLL.get());
+    }
+    @SubscribeEvent
+    public static void onRegisterKeyMappings(RegisterKeyMappingsEvent event) {
+        event.register(ModKeyMappings.SPELL_CATALOG);
     }
 }

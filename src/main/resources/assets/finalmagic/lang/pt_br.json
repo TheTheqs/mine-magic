@@ -7,8 +7,21 @@
   "block.finalmagic.inscription_table": "Mesa de Feitiçaria",
   "item.finalmagic.cipher_coal": "Carvão de Cifra",
   "subtitles.finalmagic.inscription_table.draw": "Cifra desenhada",
-  "gui.finalmagic.inscription.invalid": "Padrão inválido — retire papel para limpar o desenho.",
   "message.finalmagic.inscription.inventory_full": "Seu inventário não tem espaço para o resultado.",
   "item.finalmagic.fire_scroll": "Pergaminho de Fogo",
-  "gui.finalmagic.inscription.valid": "Padrão válido — clique para criar."
+  "message.finalmagic.fire_scroll_missing": "Fogo (I) está indisponível: carregue um Pergaminho de Fogo no inventário.",
+  "message.finalmagic.fire_available": "Fogo (I) está disponível: você carrega um Pergaminho de Fogo.",
+  "gui.finalmagic.spells.available": "Disponível pelo pergaminho no inventário.",
+  "gui.finalmagic.spells.title": "Feitiços disponíveis",
+  "school.finalmagic.manipulation": "Manipulação",
+  "gui.finalmagic.spells.empty": "Nenhum feitiço disponível nesta escola.",
+  "key.categories.finalmagic": "Final Magic",
+  "gui.finalmagic.spells.close": "Esc para fechar",
+  "gui.finalmagic.spells.tier": "Tier %s",
+  "school.finalmagic.summoning": "Invocação",
+  "spell.finalmagic.fire": "Fogo",
+  "school.finalmagic.conjuration": "Conjuração",
+  "gui.finalmagic.spells.count": "%s feitiço(s) disponível(is)",
+  "key.finalmagic.spell_catalog": "Abrir catálogo de feitiços",
+  "school.finalmagic.transmutation": "Transfiguração"
 }

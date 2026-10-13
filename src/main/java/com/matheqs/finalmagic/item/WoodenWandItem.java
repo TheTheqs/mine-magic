@@ -10,6 +10,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.component.CustomData;
 import net.minecraft.world.level.Level;
 import com.matheqs.finalmagic.binding.WandBindingSavedData;
+import com.matheqs.finalmagic.spell.SpellAvailability;
 import net.minecraft.server.level.ServerLevel;
 import org.jetbrains.annotations.NotNull;
 
@@ -75,6 +76,7 @@ public class WoodenWandItem extends Item {
 
             player.sendSystemMessage(Component.translatable(
                     "message.finalmagic.wand_already_bound"));
+            reportFireAvailability(player);
 
             return InteractionResultHolder.sidedSuccess(stack, false);
         }
@@ -100,7 +102,14 @@ public class WoodenWandItem extends Item {
 
         player.sendSystemMessage(Component.translatable(
                 "message.finalmagic.wand_bound"));
+        reportFireAvailability(player);
 
         return InteractionResultHolder.sidedSuccess(stack, false);
+    }
+    private void reportFireAvailability(Player player) {
+        String messageKey = SpellAvailability.isFireAvailable(player)
+                ? "message.finalmagic.fire_available"
+                : "message.finalmagic.fire_scroll_missing";
+        player.sendSystemMessage(Component.translatable(messageKey));
     }
 }
